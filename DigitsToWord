@@ -1,0 +1,33 @@
+
+import java.util.Scanner;
+public class DigitsToWord{
+    
+    public static void main(String[] args){
+        var instance = new DigitsToWord();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the digit string");
+        String digitsList = sc.next();
+        String word = instance.getSentenceFromString(digitsList);
+        System.out.println(word);
+    }
+    
+    public String getSentenceFromString(String digitsList){
+        int ext = 2;
+        String formatted="";
+        for(int i=0; i<digitsList.length(); i+=2){
+            String toBeProcessed = digitsList.substring(i, ext);
+            System.out.println(toBeProcessed);
+            int num = Integer.parseInt(toBeProcessed);
+            if(num>99 || num<32){
+                toBeProcessed = digitsList.substring(i, ext+1);
+                ext+=1;
+                i++;
+                num = Integer.parseInt(toBeProcessed);
+            }
+            ext+=2;
+            formatted = formatted + (char)num;
+        }
+        
+        return formatted;
+    }
+}
